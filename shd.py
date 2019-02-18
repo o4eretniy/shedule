@@ -1,3 +1,4 @@
+# Create a list with the mood to write in excel
 import random
 
 list = []
@@ -6,7 +7,7 @@ for i in range(15):
 
 print(len(list))
 print(list)
-# Create a list with the mood to write in excel
+################################################
 
 import pandas as pd
 import xlrd
@@ -14,8 +15,17 @@ import matplotlib.pyplot as plt
 
 # open Excel file
 sh = pd.ExcelFile('templates/shedule.xlsx')
-print(sh.sheet_names)
 new_sh = sh.parse('shedule')
-print(new_sh.columns)
-print(new_sh['Days'])
-print(new_sh['Mood'])
+
+# assigned columns values to axes
+days = new_sh['Days']
+mood = new_sh['Mood']
+plt.plot(days , mood, linewidth=3)
+
+# gave the names of the axes and title
+plt.title('Shedule', fontsize=24)
+plt.xlabel(str(new_sh.columns[1]), fontsize=14)
+plt.ylabel(str(new_sh.columns[0]), fontsize=14)
+
+# show graph
+plt.show()
